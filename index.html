@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nanotecnologia do Zero ao Avançado - AVA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #4a148c;
+            --accent-color: #00acc1;
+            --light-bg: #f5f7fa;
+            --dark-text: #263238;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 100px 100px;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        /* Timeline Styles */
+        .timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-color), var(--primary-color));
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin: 50px 0;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 30px);
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 30px);
+            text-align: left;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border: 4px solid white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px rgba(0, 172, 193, 0.2);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-dot {
+            background-color: var(--primary-color);
+            box-shadow: 0 0 0 8px rgba(26, 35, 126, 0.2);
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -20px;
+            border-left-color: white;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -20px;
+            border-right-color: white;
+        }
+        
+        .timeline-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover .timeline-icon {
+            background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-description {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-topics {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+        
+        .timeline-topics li {
+            padding: 5px 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-topics li i {
+            color: var(--accent-color);
+            margin-right: 8px;
+        }
+        
+        .btn-module {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 8px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .btn-module:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-module:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        
+        /* Module Detail Styles */
+        .module-detail {
+            display: none;
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            animation: slideIn 0.5s ease;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .module-detail.active {
+            display: block;
+        }
+        
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .module-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .module-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-right: 20px;
+        }
+        
+        .concept-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .concept-box h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .image-placeholder {
+            background-color: #e9ecef;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin: 25px 0;
+            color: #6c757d;
+            border: 2px dashed #dee2e6;
+        }
+        
+        .image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                padding-left: 70px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .timeline-content::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 0;
+            }
+            
+            .module-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .module-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        .interactive-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .quiz-option {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .quiz-option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .quiz-option.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .glossary-item {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .glossary-term {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .btn-custom {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-custom:hover {
+            background-color: #0097a7;
+            color: white;
+        }
+        
+        .tab-content {
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .nav-tabs {
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .nav-tabs .nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            border: none;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--accent-color);
+            background-color: transparent;
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .certificate {
+            background-color: white;
+            border: 10px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .certificate h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .certificate .student-name {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding: 0 20px 5px;
+        }
+        
+        .resource-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .resource-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .resource-list i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+        
+        .close-module {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-module:hover {
+            color: var(--primary-color);
+        }
+        
+        .close-module:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        /* Focus styles */
+        a:focus,
+        button:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        
+        /* Skip to content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Recursos para Download Section */
+        .resources-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .resource-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover .resource-icon {
+            background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        .resource-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .resource-description {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .btn-download {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 8px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .btn-download:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-download i {
+            margin-right: 8px;
+        }
+        
+        .btn-download:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        
+        /* Communication Tech Section */
+        .comm-tech-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eaf6 100%);
+        }
+        
+        .comm-tech-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .comm-tech-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .comm-tech-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .comm-detail-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .comm-detail-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .comm-detail-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 70px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-right: 25px;
+        }
+        
+        .comm-detail-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .comm-detail-section {
+            margin-bottom: 40px;
+        }
+        
+        .comm-detail-section h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .comm-detail-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+        
+        .comm-detail-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .comm-detail-section ul {
+            color: #555;
+            line-height: 1.8;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .comm-detail-section li {
+            margin-bottom: 10px;
+        }
+        
+        .application-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .application-card {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .application-card:hover {
+            background: #f0f2f5;
+            transform: translateX(5px);
+        }
+        
+        .application-card h4 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .application-card h4 i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+        
+        .comm-quiz {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .comm-quiz h3 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-atom"></i> NanoTec AVA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#modules">Módulos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#activities">Atividades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#resources">Recursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#comm-tech">Tecnologia de Comunicação</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#downloads">Downloads</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#evaluation">Avaliação</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Nanotecnologia do Zero ao Avançado</h1>
+                    <p class="lead mb-4">Explore o mundo fascinante da nanociência e nanotecnologia através de um ambiente de aprendizagem interativo e completo.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#modules" class="btn btn-light btn-lg">Começar Agora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modules Timeline Section -->
+    <main id="main-content">
+        <section id="modules" class="py-5">
+            <div class="container">
+                <h2 class="section-title text-center">Jornada de Aprendizagem</h2>
+                <p class="text-center mb-5">Explore nossa linha do tempo de módulos e clique em cada um para acessar o conteúdo completo</p>
+                
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <!-- Module 1 -->
+                        <div class="timeline-item" style="animation-delay: 0.1s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <h3 class="timeline-title">Módulo 1</h3>
+                                <h4 class="timeline-title">Fundamentos da Nanotecnologia</h4>
+                                <p class="timeline-description">Conceitos básicos, escala nanométrica e propriedades únicas</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Escala nanométrica</li>
+                                    <li><i class="fas fa-check-circle"></i> Histórico (Feynman)</li>
+                                    <li><i class="fas fa-check-circle"></i> Propriedades da nanoescala</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('module1')" aria-expanded="false" aria-controls="module1">
+                                    <i class="fas fa-arrow-right"></i> Acessar Módulo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 1 Content -->
+                        <div id="module1" class="module-detail" aria-labelledby="module1-title">
+                            <button class="close-module" onclick="toggleModule('module1')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">1</div>
+                                    <h2 class="module-title" id="module1-title">Fundamentos da Nanotecnologia</h2>
+                                </div>
+                            </div>
+                            
+                            <h3>Introdução à Nanociência e Nanotecnologia</h3>
+                            <p>A nanotecnologia é uma área multidisciplinar que envolve a manipulação da matéria em escala atômica e molecular, tipicamente na faixa de 1 a 100 nanômetros. Um nanômetro (nm) equivale a um bilionésimo de metro (10⁻⁹ m). Para ter uma ideia da escala, um fio de cabelo humano tem aproximadamente 80.000 nanômetros de diâmetro.</p>
+                            
+                            <div class="concept-box">
+                                <h5>Conceito-chave:</h5>
+                                <p>Nanotecnologia não é apenas sobre fazer coisas pequenas, mas sobre explorar as novas propriedades que os materiais apresentam nesta escala.</p>
+                            </div>
+                            
+                            <h3>Escala Nanométrica</h3>
+                            <p>Para compreender a nanotecnologia, é fundamental visualizar as diferentes escalas de tamanho:</p>
+                            
+                            <div class="image-placeholder">
+                                <i class="fas fa-ruler-combined"></i>
+                                <p>Infográfico comparativo: Milímetro → Micrômetro → Nanômetro</p>
+                            </div>
+                            
+                            <ul>
+                                <li><strong>Milímetro (mm):</strong> 10⁻³ m - Visível a olho nu</li>
+                                <li><strong>Micrômetro (μm):</strong> 10⁻⁶ m - Visível com microscópio óptico</li>
+                                <li><strong>Nanômetro (nm):</strong> 10⁻⁹ m - Requer microscópio eletrônico</li>
+                                <li><strong>Angström (Å):</strong> 10⁻¹⁰ m - Escala atômica</li>
+                            </ul>
+                            
+                            <h3>Quiz de Verificação</h3>
+                            <div class="interactive-section">
+                                <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                                
+                                <div class="mb-3">
+                                    <p>1. Qual é a faixa de tamanho típica da nanotecnologia?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module1" id="q1a-module1">
+                                        <label class="form-check-label" for="q1a-module1">1 a 100 micrômetros</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module1" id="q1b-module1">
+                                        <label class="form-check-label" for="q1b-module1">1 a 100 nanômetros</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module1" id="q1c-module1">
+                                        <label class="form-check-label" for="q1c-module1">1 a 100 picômetros</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('module1')">Verificar Respostas</button>
+                                <div id="quizResult-module1" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 2 -->
+                        <div class="timeline-item" style="animation-delay: 0.2s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <h3 class="timeline-title">Módulo 2</h3>
+                                <h4 class="timeline-title">Nanoestruturas de Carbono</h4>
+                                <p class="timeline-description">Alotropia, nanotubos, síntese e caracterização</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Formas alotrópicas</li>
+                                    <li><i class="fas fa-check-circle"></i> Nanotubos de carbono</li>
+                                    <li><i class="fas fa-check-circle"></i> Métodos de síntese</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('module2')" aria-expanded="false" aria-controls="module2">
+                                    <i class="fas fa-arrow-right"></i> Acessar Módulo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 2 Content -->
+                        <div id="module2" class="module-detail" aria-labelledby="module2-title">
+                            <button class="close-module" onclick="toggleModule('module2')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">2</div>
+                                    <h2 class="module-title" id="module2-title">Nanoestruturas de Carbono</h2>
+                                </div>
+                            </div>
+                            
+                            <h3>Introdução às Nanoestruturas de Carbono</h3>
+                            <p>O carbono é um elemento extraordinário que pode formar diversas estruturas com propriedades físicas e químicas distintas. Essa capacidade de se arranjar em diferentes configurações é conhecida como alotropia. Na escala nanométrica, o carbono forma estruturas fascinantes que revolucionaram a ciência dos materiais.</p>
+                            
+                            <div class="concept-box">
+                                <h5>Conceito-chave:</h5>
+                                <p>A versatilidade do carbono se deve à sua capacidade de formar quatro ligações covalentes estáveis, permitindo uma infinidade de estruturas.</p>
+                            </div>
+                            
+                            <h3>Quiz de Verificação</h3>
+                            <div class="interactive-section">
+                                <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                                
+                                <div class="mb-3">
+                                    <p>1. Qual das seguintes NÃO é uma forma alotrópica do carbono?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module2" id="q1a-module2">
+                                        <label class="form-check-label" for="q1a-module2">Grafite</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module2" id="q1b-module2">
+                                        <label class="form-check-label" for="q1b-module2">Diamante</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module2" id="q1c-module2">
+                                        <label class="form-check-label" for="q1c-module2">Quartzo</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('module2')">Verificar Respostas</button>
+                                <div id="quizResult-module2" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 3 -->
+                        <div class="timeline-item" style="animation-delay: 0.3s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <h3 class="timeline-title">Módulo 3</h3>
+                                <h4 class="timeline-title">Aplicações da Nanotecnologia</h4>
+                                <p class="timeline-description">Eletrônica, materiais, biotecnologia e energia</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Eletrônica avançada</li>
+                                    <li><i class="fas fa-check-circle"></i> Materiais inovadores</li>
+                                    <li><i class="fas fa-check-circle"></i> Aplicações médicas</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('module3')" aria-expanded="false" aria-controls="module3">
+                                    <i class="fas fa-arrow-right"></i> Acessar Módulo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 3 Content -->
+                        <div id="module3" class="module-detail" aria-labelledby="module3-title">
+                            <button class="close-module" onclick="toggleModule('module3')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">3</div>
+                                    <h2 class="module-title" id="module3-title">Aplicações da Nanotecnologia</h2>
+                                </div>
+                            </div>
+                            
+                            <h3>Introdução às Aplicações</h3>
+                            <p>As propriedades únicas dos nanomateriais, especialmente dos nanotubos de carbono e do grafeno, abriram um universo de aplicações em diversas áreas do conhecimento. Este módulo explora as aplicações mais promissoras e impactantes da nanotecnologia.</p>
+                            
+                            <div class="concept-box">
+                                <h5>Conceito-chave:</h5>
+                                <p>A nanotecnologia não é uma indústria específica, mas uma tecnologia habilitadora que pode revolucionar múltiplos setores.</p>
+                            </div>
+                            
+                            <h3>Quiz de Verificação</h3>
+                            <div class="interactive-section">
+                                <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                                
+                                <div class="mb-3">
+                                    <p>1. Qual é uma aplicação promissora dos nanotubos de carbono na eletrônica?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module3" id="q1a-module3">
+                                        <label class="form-check-label" for="q1a-module3">Capacitores de alta tensão</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module3" id="q1b-module3">
+                                        <label class="form-check-label" for="q1b-module3">Transistores de alta frequência</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module3" id="q1c-module3">
+                                        <label class="form-check-label" for="q1c-module3">Resistores de baixa potência</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('module3')">Verificar Respostas</button>
+                                <div id="quizResult-module3" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 4 -->
+                        <div class="timeline-item" style="animation-delay: 0.4s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <h3 class="timeline-title">Módulo 4</h3>
+                                <h4 class="timeline-title">Impactos e Ética</h4>
+                                <p class="timeline-description">Aspectos sociais, ambientais e regulatórios</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Impactos econômicos</li>
+                                    <li><i class="fas fa-check-circle"></i> Riscos ambientais</li>
+                                    <li><i class="fas fa-check-circle"></i> Questões éticas</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('module4')" aria-expanded="false" aria-controls="module4">
+                                    <i class="fas fa-arrow-right"></i> Acessar Módulo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 4 Content -->
+                        <div id="module4" class="module-detail" aria-labelledby="module4-title">
+                            <button class="close-module" onclick="toggleModule('module4')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">4</div>
+                                    <h2 class="module-title" id="module4-title">Impactos e Ética da Nanotecnologia</h2>
+                                </div>
+                            </div>
+                            
+                            <h3>Introdução aos Impactos Sociais</h3>
+                            <p>Assim como qualquer tecnologia disruptiva, a nanotecnologia traz consigo uma série de implicações sociais, econômicas, ambientais e éticas que precisam ser cuidadosamente consideradas. Este módulo explora os múltiplos aspectos do desenvolvimento e aplicação da nanotecnologia na sociedade.</p>
+                            
+                            <div class="concept-box">
+                                <h5>Conceito-chave:</h5>
+                                <p>O desenvolvimento tecnológico deve ser acompanhado por uma reflexão crítica sobre seus impactos e pela criação de frameworks regulatórios adequados.</p>
+                            </div>
+                            
+                            <h3>Quiz de Verificação</h3>
+                            <div class="interactive-section">
+                                <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                                
+                                <div class="mb-3">
+                                    <p>1. Qual é um dos principais riscos ambientais associados aos nanomateriais?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module4" id="q1a-module4">
+                                        <label class="form-check-label" for="q1a-module4">Aumento da biodiversidade</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module4" id="q1b-module4">
+                                        <label class="form-check-label" for="q1b-module4">Acúmulo no meio ambiente e toxicidade</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module4" id="q1c-module4">
+                                        <label class="form-check-label" for="q1c-module4">Redução do consumo de energia</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('module4')">Verificar Respostas</button>
+                                <div id="quizResult-module4" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 5 -->
+                        <div class="timeline-item" style="animation-delay: 0.5s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <h3 class="timeline-title">Módulo 5</h3>
+                                <h4 class="timeline-title">Ensino e Didática</h4>
+                                <p class="timeline-description">Estratégias pedagógicas e atividades práticas</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Abordagens CTS</li>
+                                    <li><i class="fas fa-check-circle"></i> Atividades de baixo custo</li>
+                                    <li><i class="fas fa-check-circle"></i> Planejamento de aulas</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('module5')" aria-expanded="false" aria-controls="module5">
+                                    <i class="fas fa-arrow-right"></i> Acessar Módulo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 5 Content -->
+                        <div id="module5" class="module-detail" aria-labelledby="module5-title">
+                            <button class="close-module" onclick="toggleModule('module5')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">5</div>
+                                    <h2 class="module-title" id="module5-title">Ensino e Didática da Nanociência</h2>
+                                </div>
+                            </div>
+                            
+                            <h3>Introdução ao Ensino de Nanociência</h3>
+                            <p>O ensino de nanociência e nanotecnologia no nível médio apresenta desafios únicos devido à natureza abstrata dos conceitos e à necessidade de equipamentos sofisticados para observação direta. Este módulo explora estratégias didáticas para tornar esses conceitos acessíveis e significativos para os estudantes.</p>
+                            
+                            <div class="concept-box">
+                                <h5>Conceito-chave:</h5>
+                                <p>O ensino de nanociência requer uma abordagem multidisciplinar que conecte conceitos de física, química, biologia e matemática de forma integrada.</p>
+                            </div>
+                            
+                            <h3>Quiz de Verificação</h3>
+                            <div class="interactive-section">
+                                <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                                
+                                <div class="mb-3">
+                                    <p>1. Qual é um dos principais desafios no ensino de nanociência?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module5" id="q1a-module5">
+                                        <label class="form-check-label" for="q1a-module5">Falta de interesse dos estudantes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module5" id="q1b-module5">
+                                        <label class="form-check-label" for="q1b-module5">Abstração dos conceitos e limitações experimentais</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module5" id="q1c-module5">
+                                        <label class="form-check-label" for="q1c-module5">Excesso de material didático</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('module5')">Verificar Respostas</button>
+                                <div id="quizResult-module5" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 6 -->
+                        <div class="timeline-item" style="animation-delay: 0.6s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <h3 class="timeline-title">Módulo 6</h3>
+                                <h4 class="timeline-title">Pesquisa no Brasil</h4>
+                                <p class="timeline-description">Grupos de pesquisa e iniciativas nacionais</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Principais grupos</li>
+                                    <li><i class="fas fa-check-circle"></i> Linhas de pesquisa</li>
+                                    <li><i class="fas fa-check-circle"></i> Formação de recursos</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('module6')" aria-expanded="false" aria-controls="module6">
+                                    <i class="fas fa-arrow-right"></i> Acessar Módulo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Module 6 Content -->
+                        <div id="module6" class="module-detail" aria-labelledby="module6-title">
+                            <button class="close-module" onclick="toggleModule('module6')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">6</div>
+                                    <h2 class="module-title" id="module6-title">Pesquisa em Nanotecnologia no Brasil</h2>
+                                </div>
+                            </div>
+                            
+                            <h3>Introdução à Pesquisa Brasileira</h3>
+                            <p>O Brasil tem se destacado na pesquisa em nanotecnologia, com grupos de referência mundial em diversas áreas. Este módulo apresenta o panorama da pesquisa em nanotecnologia no país, os principais grupos de pesquisa, linhas de investigação e iniciativas educacionais.</p>
+                            
+                            <div class="concept-box">
+                                <h5>Conceito-chave:</h5>
+                                <p>A pesquisa em nanotecnologia no Brasil é caracterizada pela colaboração interinstitucional e pela busca por soluções para desafios nacionais.</p>
+                            </div>
+                            
+                            <h3>Quiz de Verificação</h3>
+                            <div class="interactive-section">
+                                <p>Responda às perguntas abaixo para verificar seu entendimento:</p>
+                                
+                                <div class="mb-3">
+                                    <p>1. Qual universidade é reconhecida como líder em pesquisa em nanotecnologia no Brasil?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module6" id="q1a-module6">
+                                        <label class="form-check-label" for="q1a-module6">UNICAMP</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module6" id="q1b-module6">
+                                        <label class="form-check-label" for="q1b-module6">UFMG</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-module6" id="q1c-module6">
+                                        <label class="form-check-label" for="q1c-module6">USP</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('module6')">Verificar Respostas</button>
+                                <div id="quizResult-module6" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Nanotecnologia em Tecnologia de Comunicação Section -->
+        <section id="comm-tech" class="comm-tech-section">
+            <div class="container">
+                <div class="comm-tech-header">
+                    <h2 class="comm-tech-title">Nanotecnologia e Nanociência em Tecnologia de Comunicação</h2>
+                    <p class="comm-tech-subtitle">Explore como a nanotecnologia está revolucionando os sistemas de comunicação, desde componentes eletrônicos até redes sem fio de última geração</p>
+                </div>
+                
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <!-- Comm Module 1 -->
+                        <div class="timeline-item" style="animation-delay: 0.1s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-atom"></i>
+                                </div>
+                                <h3 class="timeline-title">Tópico 1</h3>
+                                <h4 class="timeline-title">Fundamentos da Nanotecnologia</h4>
+                                <p class="timeline-description">Conceitos básicos, escala nanométrica e propriedades únicas dos materiais em nanoescala</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> O que é Nanotecnologia</li>
+                                    <li><i class="fas fa-check-circle"></i> Escala Nanométrica</li>
+                                    <li><i class="fas fa-check-circle"></i> Propriedades Quânticas</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('comm-module1')" aria-expanded="false" aria-controls="comm-module1">
+                                    <i class="fas fa-arrow-right"></i> Explorar Conteúdo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 1 Content -->
+                        <div id="comm-module1" class="module-detail" aria-labelledby="comm-module1-title">
+                            <button class="close-module" onclick="toggleModule('comm-module1')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">1</div>
+                                    <h2 class="module-title" id="comm-module1-title">Fundamentos da Nanotecnologia</h2>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>O que é Nanotecnologia e Nanociência?</h3>
+                                <p>A nanotecnologia e a nanociência representam campos de estudo e aplicação que exploram fenômenos e manipulam materiais em uma escala incrivelmente pequena: a escala nanométrica. Um nanômetro (nm) é um bilionésimo de metro (10⁻⁹ metros). Para contextualizar, um fio de cabelo humano tem aproximadamente 80.000 a 100.000 nanômetros de diâmetro, e um átomo de hidrogênio mede cerca de 0,1 nanômetro.</p>
+                                
+                                <p>Essa escala, que varia aproximadamente de 1 a 100 nanômetros, é onde as propriedades da matéria podem mudar drasticamente em comparação com suas contrapartes em macroescala.</p>
+                                
+                                <div class="concept-box">
+                                    <h5>Conceito-chave:</h5>
+                                    <p>A nanociência é o estudo desses fenômenos e materiais em escala nanométrica, enquanto a nanotecnologia é a aplicação prática desse conhecimento.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>A Importância da Escala Nanométrica</h3>
+                                <p>A relevância da escala nanométrica reside no fato de que, ao manipular a matéria nesse nível, é possível alterar fundamentalmente suas propriedades. Materiais que são opacos em macroescala podem se tornar transparentes, isolantes podem se tornar condutores, e substâncias estáveis podem se tornar reativas.</p>
+                                
+                                <p>Essas mudanças não são meramente uma questão de miniaturização, mas sim de uma alteração intrínseca no comportamento dos materiais devido a dois fatores principais:</p>
+                                
+                                <h4>Efeitos Quânticos</h4>
+                                <p>Em nanoescala, as leis da física clássica que governam o comportamento da matéria em nosso mundo macroscópico começam a dar lugar aos princípios da mecânica quântica. Isso significa que as propriedades eletrônicas, ópticas e magnéticas dos materiais podem ser ajustadas com precisão ao controlar seu tamanho e forma.</p>
+                                
+                                <h4>Relação Superfície-Volume</h4>
+                                <p>À medida que o tamanho de uma partícula diminui, a proporção de átomos na superfície em relação ao volume total aumenta exponencialmente. Essa alta relação superfície-volume confere aos nanomateriais uma reatividade química e catalítica significativamente maior, além de influenciar suas propriedades mecânicas e térmicas.</p>
+                            </div>
+                            
+                            <div class="comm-quiz">
+                                <h3>Quiz de Verificação</h3>
+                                <div class="mb-3">
+                                    <p>1. Qual é a faixa de tamanho típica da nanotecnologia?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module1" id="q1a-comm-module1">
+                                        <label class="form-check-label" for="q1a-comm-module1">1 a 100 micrômetros</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module1" id="q1b-comm-module1">
+                                        <label class="form-check-label" for="q1b-comm-module1">1 a 100 nanômetros</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module1" id="q1c-comm-module1">
+                                        <label class="form-check-label" for="q1c-comm-module1">1 a 100 picômetros</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('comm-module1')">Verificar Respostas</button>
+                                <div id="quizResult-comm-module1" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 2 -->
+                        <div class="timeline-item" style="animation-delay: 0.2s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-cubes"></i>
+                                </div>
+                                <h3 class="timeline-title">Tópico 2</h3>
+                                <h4 class="timeline-title">Nanomateriais para Comunicação</h4>
+                                <p class="timeline-description">Estrutura, propriedades e aplicações dos principais nanomateriais usados em tecnologia de comunicação</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Nanotubos de Carbono</li>
+                                    <li><i class="fas fa-check-circle"></i> Grafeno</li>
+                                    <li><i class="fas fa-check-circle"></i> Métodos de Síntese</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('comm-module2')" aria-expanded="false" aria-controls="comm-module2">
+                                    <i class="fas fa-arrow-right"></i> Explorar Conteúdo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 2 Content -->
+                        <div id="comm-module2" class="module-detail" aria-labelledby="comm-module2-title">
+                            <button class="close-module" onclick="toggleModule('comm-module2')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">2</div>
+                                    <h2 class="module-title" id="comm-module2-title">Nanomateriais para Comunicação</h2>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>Classificação dos Nanomateriais</h3>
+                                <p>Os nanomateriais são classificados com base em suas dimensões em escala nanométrica. Essa classificação é fundamental porque a redução de uma ou mais dimensões para a nanoescala pode alterar drasticamente as propriedades do material.</p>
+                                
+                                <h4>Materiais 0D (Zero-Dimensionais)</h4>
+                                <p>São materiais em que todas as três dimensões estão confinadas na nanoescala. Exemplos incluem nanopartículas (como pontos quânticos e fulerenos) e nanocristais. Suas propriedades são altamente dependentes do tamanho e da forma, e a alta relação superfície-volume os torna ideais para aplicações em catálise, sensores e medicina.</p>
+                                
+                                <h4>Materiais 1D (Unidimensionais)</h4>
+                                <p>Nesses materiais, duas dimensões estão na nanoescala, enquanto a terceira dimensão é maior. Os exemplos mais proeminentes são os nanotubos (como os nanotubos de carbono e nanotubos de titanato) e nanofios. A estrutura unidimensional confere a esses materiais propriedades elétricas, mecânicas e térmicas anisotrópicas, tornando-os promissores para eletrônica, compósitos e sensores.</p>
+                                
+                                <h4>Materiais 2D (Bidimensionais)</h4>
+                                <p>São materiais em que uma dimensão está na nanoescala, enquanto as outras duas são maiores. O grafeno é o exemplo mais conhecido, sendo uma única camada de átomos de carbono. Outros exemplos incluem o MoS₂ (dissulfeto de molibdênio) e outros materiais bidimensionais. Esses materiais possuem propriedades eletrônicas e ópticas únicas, sendo explorados em transistores, sensores e dispositivos optoeletrônicos.</p>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>Nanotubos de Carbono (NTCs)</h3>
+                                <p>Os nanotubos de carbono são alótropos de carbono que consistem em folhas de grafeno enroladas em cilindros ocos. Sua descoberta em 1991 por Sumio Iijima marcou um ponto de virada na nanotecnologia, devido às suas propriedades excepcionais.</p>
+                                
+                                <h4>Estrutura e Tipos</h4>
+                                <p>Existem dois tipos principais de NTCs, diferenciados pelo número de camadas de grafeno que os compõem:</p>
+                                <ul>
+                                    <li><strong>Nanotubos de Parede Simples (SWCNTs):</strong> Consistem em uma única folha de grafeno enrolada para formar um cilindro. Eles são tipicamente muito finos, com diâmetros que variam de 0,4 a 2 nanômetros.</li>
+                                    <li><strong>Nanotubos de Parede Múltipla (MWCNTs):</strong> São compostos por duas ou mais folhas de grafeno concêntricas, aninhadas como bonecas russas. Seus diâmetros podem ser significativamente maiores, atingindo dezenas de nanômetros.</li>
+                                </ul>
+                                
+                                <h4>Propriedades Excepcionais</h4>
+                                <p>Os NTCs possuem propriedades verdadeiramente notáveis que os tornam candidatos ideais para aplicações em tecnologia de comunicação:</p>
+                                
+                                <ul>
+                                    <li><strong>Propriedades Elétricas:</strong> Dependendo de sua quiralidade, os NTCs podem ser metálicos ou semicondutores. Os NTCs metálicos podem conduzir correntes elétricas de forma balística, resultando em condutividade excepcionalmente alta e mínima dissipação de calor.</li>
+                                    <li><strong>Propriedades Mecânicas:</strong> Os NTCs são um dos materiais mais fortes e rígidos conhecidos. Sua resistência à tração é cerca de 100 vezes maior que a do aço, com apenas um sexto de sua densidade.</li>
+                                    <li><strong>Propriedades Térmicas:</strong> Os NTCs possuem uma condutividade térmica extremamente alta, superando a do diamante e do cobre, o que é vital para o gerenciamento de calor em dispositivos eletrônicos.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comm-quiz">
+                                <h3>Quiz de Verificação</h3>
+                                <div class="mb-3">
+                                    <p>1. Qual método é mais utilizado para produção em larga escala de nanotubos?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module2" id="q1a-comm-module2">
+                                        <label class="form-check-label" for="q1a-comm-module2">Descarga de arco elétrico</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module2" id="q1b-comm-module2">
+                                        <label class="form-check-label" for="q1b-comm-module2">Deposição Química de Vapor (CVD)</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module2" id="q1c-comm-module2">
+                                        <label class="form-check-label" for="q1c-comm-module2">Ablação a laser</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('comm-module2')">Verificar Respostas</button>
+                                <div id="quizResult-comm-module2" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 3 -->
+                        <div class="timeline-item" style="animation-delay: 0.3s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <h3 class="timeline-title">Tópico 3</h3>
+                                <h4 class="timeline-title">Eletrônica e Computação</h4>
+                                <p class="timeline-description">Aplicações da nanotecnologia em componentes eletrônicos, processadores e sistemas de memória</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Miniaturização</li>
+                                    <li><i class="fas fa-check-circle"></i> Transistores Nanométricos</li>
+                                    <li><i class="fas fa-check-circle"></i> Processadores em Memória</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('comm-module3')" aria-expanded="false" aria-controls="comm-module3">
+                                    <i class="fas fa-arrow-right"></i> Explorar Conteúdo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 3 Content -->
+                        <div id="comm-module3" class="module-detail" aria-labelledby="comm-module3-title">
+                            <button class="close-module" onclick="toggleModule('comm-module3')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">3</div>
+                                    <h2 class="module-title" id="comm-module3-title">Eletrônica e Computação</h2>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>Miniaturização de Componentes Eletrônicos</h3>
+                                <p>A Lei de Moore, que previu a duplicação do número de transistores em um chip a cada dois anos, tem sido a força motriz por trás do avanço exponencial da computação nas últimas décadas. No entanto, à medida que os transistores se aproximam dos limites físicos da miniaturização baseada em silício, os desafios técnicos e econômicos se tornam cada vez maiores.</p>
+                                
+                                <p>É nesse ponto que a nanotecnologia emerge como a solução para continuar o progresso, permitindo a criação de componentes ainda menores, mais rápidos e mais eficientes. A miniaturização impulsionada pela nanotecnologia não se trata apenas de reduzir o tamanho, mas de explorar as novas propriedades que surgem em nanoescala.</p>
+                                
+                                <div class="concept-box">
+                                    <h5>Conceito-chave:</h5>
+                                    <p>A nanotecnologia permite a manipulação do comportamento dos elétrons em níveis quânticos e a otimização da relação superfície-volume dos materiais, resultando em ganhos significativos de desempenho e eficiência energética.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>Transistores Baseados em Nanomateriais</h3>
+                                <p>Os transistores são os blocos construtores fundamentais de todos os circuitos eletrônicos. A substituição do silício por nanomateriais é uma das áreas mais promissoras para a próxima geração de transistores:</p>
+                                
+                                <h4>Transistores de Nanotubos de Carbono (CNT-FETs)</h4>
+                                <p>Os NTCs, especialmente os semicondutores, são excelentes candidatos para transistores de efeito de campo (FETs) devido à sua alta mobilidade de elétrons e capacidade de condução balística. Pesquisadores já construíram FETs e até circuitos lógicos e computadores funcionais usando NTCs, demonstrando seu potencial para superar os transistores de silício em termos de velocidade e eficiência energética.</p>
+                                
+                                <p>A Carbonics Inc., por exemplo, desenvolveu tecnologia de NTCs que pode atingir velocidades de radiofrequência (RF) superiores a 100 GHz, abrindo caminho para chips mais baratos e eficientes em sistemas de RF.</p>
+                            </div>
+                            
+                            <div class="comm-quiz">
+                                <h3>Quiz de Verificação</h3>
+                                <div class="mb-3">
+                                    <p>1. Qual é uma vantagem dos transistores baseados em nanotubos de carbono?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module3" id="q1a-comm-module3">
+                                        <label class="form-check-label" for="q1a-comm-module3">Maior tamanho físico</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module3" id="q1b-comm-module3">
+                                        <label class="form-check-label" for="q1b-comm-module3">Alta mobilidade de elétrons</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module3" id="q1c-comm-module3">
+                                        <label class="form-check-label" for="q1c-comm-module3">Menor durabilidade</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('comm-module3')">Verificar Respostas</button>
+                                <div id="quizResult-comm-module3" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 4 -->
+                        <div class="timeline-item" style="animation-delay: 0.4s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-broadcast-tower"></i>
+                                </div>
+                                <h3 class="timeline-title">Tópico 4</h3>
+                                <h4 class="timeline-title">Comunicação Sem Fio</h4>
+                                <p class="timeline-description">Como a nanotecnologia impulsiona as redes 5G, sistemas de RF e comunicações de alta frequência</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Componentes de RF</li>
+                                    <li><i class="fas fa-check-circle"></i> Tecnologia 5G/6G</li>
+                                    <li><i class="fas fa-check-circle"></i> Nanoantenas</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('comm-module4')" aria-expanded="false" aria-controls="comm-module4">
+                                    <i class="fas fa-arrow-right"></i> Explorar Conteúdo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 4 Content -->
+                        <div id="comm-module4" class="module-detail" aria-labelledby="comm-module4-title">
+                            <button class="close-module" onclick="toggleModule('comm-module4')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">4</div>
+                                    <h2 class="module-title" id="comm-module4-title">Comunicação Sem Fio</h2>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>Otimização de Desempenho em Radiofrequência (RF)</h3>
+                                <p>A nanotecnologia está revolucionando o campo da radiofrequência (RF), permitindo o desenvolvimento de componentes e sistemas de comunicação sem fio com desempenho superior, maior eficiência e dimensões reduzidas. A capacidade de manipular materiais em escala nanométrica permite otimizar a interação com ondas eletromagnéticas, resultando em avanços significativos:</p>
+                                
+                                <h4>Transistores de RF de Alta Frequência</h4>
+                                <p>Como mencionado anteriormente, transistores baseados em NTCs podem operar em frequências superiores a 100 GHz, o que é crucial para aplicações de RF de alta velocidade. Essa capacidade permite a criação de chips mais eficientes e de menor custo para sistemas de comunicação sem fio.</p>
+                                
+                                <h4>Componentes Passivos Miniaturizados</h4>
+                                <p>A nanotecnologia possibilita a criação de indutores, capacitores e resistores em nanoescala, que podem ser integrados diretamente em chips de RF, reduzindo o tamanho e o peso dos dispositivos de comunicação.</p>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>Nanotecnologia e a Evolução do 5G e Futuras Gerações</h3>
+                                <p>A tecnologia 5G, com sua promessa de velocidades ultrarrápidas, baixa latência e capacidade massiva de conexão, já se beneficia da miniaturização e da eficiência proporcionadas pela nanotecnologia. No entanto, as futuras gerações de comunicação (além do 5G) dependerão ainda mais dos avanços nanotecnológicos para atingir seus objetivos:</p>
+                                
+                                <h4>Frequências Milimétricas (mmWave)</h4>
+                                <p>O 5G utiliza frequências milimétricas (24 GHz a 100 GHz) para alcançar altas velocidades. Os transistores de NTCs, capazes de operar nessa faixa de frequência, são fundamentais para o desenvolvimento de dispositivos 5G e além.</p>
+                                
+                                <div class="concept-box">
+                                    <h5>Aplicação Prática:</h5>
+                                    <p>Componentes de RF baseados em nanotubos de carbono podem operar em frequências terahertz, abrindo portas para comunicações ultrarrápidas e processamento de dados exponencialmente mais eficiente.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-quiz">
+                                <h3>Quiz de Verificação</h3>
+                                <div class="mb-3">
+                                    <p>1. Qual frequência o 5G utiliza para alcançar altas velocidades?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module4" id="q1a-comm-module4">
+                                        <label class="form-check-label" for="q1a-comm-module4">Frequências de rádio tradicionais</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module4" id="q1b-comm-module4">
+                                        <label class="form-check-label" for="q1b-comm-module4">Frequências milimétricas (24-100 GHz)</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module4" id="q1c-comm-module4">
+                                        <label class="form-check-label" for="q1c-comm-module4">Frequências de áudio</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('comm-module4')">Verificar Respostas</button>
+                                <div id="quizResult-comm-module4" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 5 -->
+                        <div class="timeline-item" style="animation-delay: 0.5s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h3 class="timeline-title">Tópico 5</h3>
+                                <h4 class="timeline-title">Internet das Coisas</h4>
+                                <p class="timeline-description">Nanotecnologia na IoT, sensores inteligentes e a Internet das Nano Coisas (IoNT)</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Sensores Nanométricos</li>
+                                    <li><i class="fas fa-check-circle"></i> IoNT</li>
+                                    <li><i class="fas fa-check-circle"></i> Comunicação Molecular</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('comm-module5')" aria-expanded="false" aria-controls="comm-module5">
+                                    <i class="fas fa-arrow-right"></i> Explorar Conteúdo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 5 Content -->
+                        <div id="comm-module5" class="module-detail" aria-labelledby="comm-module5-title">
+                            <button class="close-module" onclick="toggleModule('comm-module5')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">5</div>
+                                    <h2 class="module-title" id="comm-module5-title">Internet das Coisas</h2>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>Internet das Nano Coisas (IoNT)</h3>
+                                <p>A Internet das Coisas (IoT) refere-se à rede de objetos físicos incorporados com sensores, software e outras tecnologias que permitem a conexão e troca de dados com outros dispositivos e sistemas pela internet. A nanotecnologia eleva esse conceito a um novo patamar com a "Internet das Nano Coisas" (IoNT), que envolve a interconexão de nanodispositivos e nanossensores.</p>
+                                
+                                <p>A IoNT permite a coleta de dados em escalas sem precedentes, abrindo portas para aplicações em ambientes onde dispositivos maiores não seriam viáveis. Isso inclui monitoramento de saúde em nível celular, detecção ambiental de poluentes em concentrações mínimas e sistemas de segurança avançados.</p>
+                                
+                                <div class="concept-box">
+                                    <h5>Conceito-chave:</h5>
+                                    <p>A comunicação na IoNT pode ocorrer por meio de nano-comunicações eletromagnéticas ou comunicação molecular, dependendo da aplicação e do ambiente.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>Sensores Inteligentes Baseados em Nanomateriais</h3>
+                                <p>Os sensores são o coração da IoT, e a nanotecnologia está revolucionando sua capacidade e eficiência. Nanomateriais oferecem vantagens significativas para o desenvolvimento de sensores inteligentes:</p>
+                                
+                                <h4>Sensibilidade e Seletividade Aprimoradas</h4>
+                                <p>A alta relação superfície-volume e as propriedades eletrônicas únicas dos nanomateriais (como NTCs, grafeno e óxido de grafeno) permitem a detecção de substâncias em concentrações extremamente baixas e a distinção entre diferentes moléculas com alta precisão. Isso é crucial para biossensores, sensores de gás e sensores ambientais.</p>
+                                
+                                <h4>Miniaturização e Flexibilidade</h4>
+                                <p>Sensores baseados em nanomateriais podem ser fabricados em tamanhos minúsculos e em substratos flexíveis, permitindo sua integração em dispositivos vestíveis, implantes médicos e superfícies irregulares.</p>
+                            </div>
+                            
+                            <div class="comm-quiz">
+                                <h3>Quiz de Verificação</h3>
+                                <div class="mb-3">
+                                    <p>1. O que significa IoNT?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module5" id="q1a-comm-module5">
+                                        <label class="form-check-label" for="q1a-comm-module5">Internet of Things tradicional</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module5" id="q1b-comm-module5">
+                                        <label class="form-check-label" for="q1b-comm-module5">Internet das Nano Coisas</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module5" id="q1c-comm-module5">
+                                        <label class="form-check-label" for="q1c-comm-module5">Internet of Tomorrow</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('comm-module5')">Verificar Respostas</button>
+                                <div id="quizResult-comm-module5" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 6 -->
+                        <div class="timeline-item" style="animation-delay: 0.6s;">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h3 class="timeline-title">Tópico 6</h3>
+                                <h4 class="timeline-title">Futuro e Desafios</h4>
+                                <p class="timeline-description">Perspectivas futuras, desafios técnicos, éticos e considerações de sustentabilidade</p>
+                                <ul class="timeline-topics">
+                                    <li><i class="fas fa-check-circle"></i> Desafios de Fabricação</li>
+                                    <li><i class="fas fa-check-circle"></i> Impactos Econômicos</li>
+                                    <li><i class="fas fa-check-circle"></i> Ética e Sustentabilidade</li>
+                                </ul>
+                                <button class="btn btn-module" onclick="toggleModule('comm-module6')" aria-expanded="false" aria-controls="comm-module6">
+                                    <i class="fas fa-arrow-right"></i> Explorar Conteúdo
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Comm Module 6 Content -->
+                        <div id="comm-module6" class="module-detail" aria-labelledby="comm-module6-title">
+                            <button class="close-module" onclick="toggleModule('comm-module6')" aria-label="Fechar módulo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="module-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="module-number">6</div>
+                                    <h2 class="module-title" id="comm-module6-title">Futuro e Desafios</h2>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>Desafios na Fabricação e Escalabilidade</h3>
+                                <p>Apesar dos avanços notáveis, a fabricação e a escalabilidade de nanomateriais de alta qualidade em volumes comerciais continuam sendo um dos maiores desafios para a ampla adoção da nanotecnologia em diversas indústrias, incluindo a de comunicação.</p>
+                                
+                                <h4>Controle de Precisão</h4>
+                                <p>A manipulação da matéria em escala atômica e molecular exige um controle de precisão extremamente alto, o que torna os processos de fabricação complexos e caros. Garantir a uniformidade e a reprodutibilidade das propriedades dos nanomateriais em larga escala é um desafio técnico significativo.</p>
+                                
+                                <h4>Custo de Produção</h4>
+                                <p>Muitos métodos de síntese de nanomateriais, especialmente os que produzem materiais de alta pureza e com propriedades específicas (como SWCNTs com quiralidade controlada), ainda são caros e de baixo rendimento, o que limita sua aplicação em produtos de consumo de massa.</p>
+                            </div>
+                            
+                            <div class="comm-detail-section">
+                                <h3>Considerações Éticas e de Sustentabilidade</h3>
+                                <p>À medida que a nanotecnologia avança, é crucial abordar as considerações éticas e de sustentabilidade associadas à sua produção e aplicação:</p>
+                                
+                                <h4>Saúde e Segurança</h4>
+                                <p>A exposição a nanopartículas pode apresentar riscos potenciais à saúde humana e ao meio ambiente, exigindo pesquisas aprofundadas sobre toxicidade e regulamentações adequadas para garantir o uso seguro de nanomateriais.</p>
+                                
+                                <h4>Impacto Ambiental</h4>
+                                <p>A produção e o descarte de nanomateriais e nanodispositivos podem ter impactos ambientais significativos se não forem gerenciados de forma responsável. É essencial desenvolver processos de fabricação mais verdes e métodos de reciclagem eficientes.</p>
+                                
+                                <div class="concept-box">
+                                    <h5>Princípio da Precaução:</h5>
+                                    <p>O desenvolvimento tecnológico deve ser acompanhado por uma reflexão crítica sobre seus impactos e pela criação de frameworks regulatórios adequados, seguindo o princípio da precaução.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="comm-quiz">
+                                <h3>Quiz de Verificação</h3>
+                                <div class="mb-3">
+                                    <p>1. Qual é um dos principais desafios na fabricação de nanomateriais?</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module6" id="q1a-comm-module6">
+                                        <label class="form-check-label" for="q1a-comm-module6">Excesso de simplicidade</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module6" id="q1b-comm-module6">
+                                        <label class="form-check-label" for="q1b-comm-module6">Controle de precisão e custo</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="q1-comm-module6" id="q1c-comm-module6">
+                                        <label class="form-check-label" for="q1c-comm-module6">Facilidade de produção</label>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-custom" onclick="checkQuiz('comm-module6')">Verificar Respostas</button>
+                                <div id="quizResult-comm-module6" class="mt-3" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Recursos para Download Section -->
+        <section id="downloads" class="resources-section">
+            <div class="container">
+                <h2 class="section-title text-center">Recursos para Download</h2>
+                <p class="text-center mb-5">Acesse os materiais completos utilizados na elaboração deste conteúdo</p>
+                
+                <div class="row">
+                    <!-- Recurso 1 -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3 class="resource-title">Tecnologia dos nanotubos de carbono</h3>
+                            <p class="resource-description">Tendências e perspectivas de uma área multidisciplinar</p>
+                            <a href="https://drive.google.com/file/d/1_KEzW_lFNoPdlkzrUlMoIBrz-GEdHU5L/view?usp=drive_link" target="_blank" class="btn-download">
+                                <i class="fas fa-download"></i> Baixar Material
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Recurso 2 -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-broadcast-tower"></i>
+                            </div>
+                            <h3 class="resource-title">Nanotubos de carbono para impulsionar as comunicações</h3>
+                            <p class="resource-description">Aplicações e perspectivas futuras</p>
+                            <a href="https://drive.google.com/file/d/1tGzZuHmOvTa3-bPjDyYjyEJ3AFvGRBSD/view?usp=drive_link" target="_blank" class="btn-download">
+                                <i class="fas fa-download"></i> Baixar Material
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Recurso 3 -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3 class="resource-title">Review of Carbon Nanotube Research</h3>
+                            <p class="resource-description">Materiais e aplicações emergentes</p>
+                            <a href="https://drive.google.com/file/d/1NiDDYrQyTTposKm2QFbTyxX6LzQ7mg5O/view?usp=sharing" target="_blank" class="btn-download">
+                                <i class="fas fa-download"></i> Baixar Material
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Recurso 4 -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <h3 class="resource-title">Estudo e Aplicações de Nanomateriais Multifuncionais</h3>
+                            <p class="resource-description">Propriedades de transporte de nanotubos de titanato e novos materiais baseados em óxido de grafeno</p>
+                            <a href="https://drive.google.com/file/d/11eO6TUHV-g6OEpLZWIdAPjaUfudrVr_p/view?usp=drive_link" target="_blank" class="btn-download">
+                                <i class="fas fa-download"></i> Baixar Material
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Recurso 5 -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="resource-title">Uma proposta para o ensino de nanociência</h3>
+                            <p class="resource-description">Ensino de nanotecnologia nas aulas de física do ensino médio</p>
+                            <a href="https://drive.google.com/file/d/1tk4JLkcXJYDbi4aOGuh7_ahUXHrxra3Q/view?usp=drive_link" target="_blank" class="btn-download">
+                                <i class="fas fa-download"></i> Baixar Material
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>NanoTec AVA</h5>
+                    <p>Ambiente Virtual de Aprendizagem sobre Nanotecnologia, desenvolvido para estudantes e pesquisadores.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Links Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#modules">Módulos</a></li>
+                        <li><a href="#activities">Atividades</a></li>
+                        <li><a href="#resources">Recursos</a></li>
+                        <li><a href="#comm-tech">Tecnologia de Comunicação</a></li>
+                        <li><a href="#downloads">Downloads</a></li>
+                        <li><a href="#evaluation">Avaliação</a></li>
+                    </ul>
+                </div>
+            <hr class="my-4 bg-white">
+            <div class="text-center">
+                <p>&copy; 2023 NanoTec AVA. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Objeto com respostas corretas para cada módulo
+        const quizAnswers = {
+            module1: {
+                q1: '1 a 100 nanômetros'
+            },
+            module2: {
+                q1: 'Quartzo'
+            },
+            module3: {
+                q1: 'Transistores de alta frequência'
+            },
+            module4: {
+                q1: 'Acúmulo no meio ambiente e toxicidade'
+            },
+            module5: {
+                q1: 'Abstração dos conceitos e limitações experimentais'
+            },
+            module6: {
+                q1: 'UNICAMP'
+            },
+            'comm-module1': {
+                q1: '1 a 100 nanômetros'
+            },
+            'comm-module2': {
+                q1: 'Deposição Química de Vapor (CVD)'
+            },
+            'comm-module3': {
+                q1: 'Alta mobilidade de elétrons'
+            },
+            'comm-module4': {
+                q1: 'Frequências milimétricas (24-100 GHz)'
+            },
+            'comm-module5': {
+                q1: 'Internet das Nano Coisas'
+            },
+            'comm-module6': {
+                q1: 'Controle de precisão e custo'
+            }
+        };
+
+        // Função para alternar a exibição dos módulos
+        function toggleModule(moduleId) {
+            const module = document.getElementById(moduleId);
+            const button = document.querySelector(`[aria-controls="${moduleId}"]`);
+            const isOpen = module.classList.contains('active');
+            
+            // Fechar todos os outros módulos primeiro
+            document.querySelectorAll('.module-detail').forEach(m => {
+                m.classList.remove('active');
+            });
+            
+            // Atualizar estado de todos os botões
+            document.querySelectorAll('.btn-module').forEach(btn => {
+                btn.setAttribute('aria-expanded', 'false');
+            });
+            
+            if (!isOpen) {
+                // Abrir o módulo selecionado
+                module.classList.add('active');
+                button.setAttribute('aria-expanded', 'true');
+                
+                // Rolar para o módulo
+                setTimeout(() => {
+                    module.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Focar no título do módulo para acessibilidade
+                    const moduleTitle = module.querySelector('.module-title');
+                    if (moduleTitle) {
+                        moduleTitle.focus();
+                    }
+                }, 100);
+            }
+        }
+
+        // Função otimizada para verificar respostas dos quizzes
+        function checkQuiz(moduleId) {
+            const moduleDiv = document.getElementById(moduleId);
+            const questions = moduleDiv.querySelectorAll('.interactive-section .mb-3');
+            let correctAnswers = 0;
+            let totalQuestions = 0;
+            
+            questions.forEach((question, index) => {
+                const inputs = question.querySelectorAll('.form-check-input');
+                const questionNumber = `q${index + 1}`;
+                const correctAnswer = quizAnswers[moduleId][questionNumber];
+                
+                if (correctAnswer && inputs.length > 0) {
+                    totalQuestions++;
+                    
+                    // Encontrar a resposta selecionada
+                    const selectedInput = Array.from(inputs).find(input => input.checked);
+                    
+                    if (selectedInput) {
+                        const selectedLabel = selectedInput.nextElementSibling.textContent.trim();
+                        
+                        // Verificar se a resposta está correta
+                        if (selectedLabel === correctAnswer) {
+                            correctAnswers++;
+                        }
+                    }
+                }
+            });
+            
+            const resultDiv = document.getElementById(`quizResult-${moduleId}`);
+            const percentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+            
+            // Criar mensagem de resultado acessível
+            let resultMessage = '';
+            let alertClass = '';
+            
+            if (percentage >= 70) {
+                resultMessage = `
+                    <div class="alert alert-success" role="alert">
+                        <h5>Ótimo trabalho!</h5>
+                        <p>Você acertou ${correctAnswers} de ${totalQuestions} perguntas (${percentage}%).</p>
+                        <p>Continue assim!</p>
+                    </div>
+                `;
+            } else {
+                resultMessage = `
+                    <div class="alert alert-warning" role="alert">
+                        <h5>Continue estudando!</h5>
+                        <p>Você acertou ${correctAnswers} de ${totalQuestions} perguntas (${percentage}%).</p>
+                        <p>Revise o conteúdo e tente novamente.</p>
+                    </div>
+                `;
+            }
+            
+            resultDiv.innerHTML = resultMessage;
+            
+            // Anunciar resultado para leitores de tela
+            const announcement = document.createElement('div');
+            announcement.className = 'sr-only';
+            announcement.setAttribute('role', 'status');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.textContent = `Resultado do quiz: ${correctAnswers} de ${totalQuestions} respostas corretas (${percentage}%)`;
+            document.body.appendChild(announcement);
+            
+            // Remover após anúncio
+            setTimeout(() => {
+                document.body.removeChild(announcement);
+            }, 1000);
+        }
+
+        // Smooth scrolling para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Focar no elemento para acessibilidade
+                    target.setAttribute('tabindex', '-1');
+                    target.focus();
+                    
+                    // Remover tabindex após foco
+                    setTimeout(() => {
+                        target.removeAttribute('tabindex');
+                    }, 1000);
+                }
+            });
+        });
+
+        // Adicionar navegação por teclado para botões de módulo
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (e.target.classList.contains('btn-module')) {
+                    e.preventDefault();
+                    e.target.click();
+                }
+            }
+        });
+
+        // Inicializar estado ARIA dos botões de módulo
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.btn-module').forEach(button => {
+                const moduleId = button.getAttribute('aria-controls');
+                const module = document.getElementById(moduleId);
+                button.setAttribute('aria-expanded', module.classList.contains('active'));
+            });
+        });
+    </script>
+</body>
+</html>
